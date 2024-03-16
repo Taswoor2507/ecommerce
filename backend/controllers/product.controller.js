@@ -2,15 +2,22 @@ import asyncHandler from "../middlewares/asyncHandler.js";
 import Product from "../models/product.model.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import ApiFeatures from "../utils/apiFeatures.js";
+import User from "../models/user.model.js";
 //@controller --> create new product
 // @access ---> admin
 
 const createNewProduct = asyncHandler(async (req, res, next) => {
+  req.body.user = req.user.id;
+  // const userId = req.user.id;
   const product = await Product.create(req.body);
 
   if (!product) {
     return next(new ErrorHandler("Product creation failed try again", 400));
   }
+  const adminPerson = await User.findById(req.user.id);
+  console.log(
+    `Admin (${adminPerson.name}) add this product at (${adminPerson.createdAt})`
+  );
 
   res.status(201).json({
     success: true,
