@@ -1,7 +1,7 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Product from "../models/product.model.js";
 import ErrorHandler from "../utils/errorHandler.js";
-
+import ApiFeatures from "../utils/apiFeatures.js";
 //@controller --> create new product
 // @access ---> admin
 
@@ -21,7 +21,12 @@ const createNewProduct = asyncHandler(async (req, res, next) => {
 //@controller --> get all products
 // @access ---> all
 const getAllProducts = asyncHandler(async (req, res, next) => {
-  const products = await Product.find();
+  const resultPerPage = 6;
+  const apiFeature = new ApiFeatures(Product.find(), req.query)
+    .search()
+    .filter()
+    .pagination(resultPerPage);
+  const products = await apiFeature.query;
   if (!products) {
     return next(new ErrorHandler("Product Not found", 400));
   }
