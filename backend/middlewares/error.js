@@ -6,7 +6,7 @@ const catchError = (err, req, res, next) => {
 
   // mongo db error or cast error
   if (err.name === "CastError") {
-    const message = `Resource not found ! , Invalid ${err.path}`;
+    const message = `Resource not found ! , Invalid ${err.path},${err.stack}`;
     err = new ErrorHandler(message, 400);
   }
 

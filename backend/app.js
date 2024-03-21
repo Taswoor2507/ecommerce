@@ -9,8 +9,10 @@ app.use(cookieParser());
 //import routes
 import productRouter from "./routes/product.route.js";
 import userRouter from "./routes/user.route.js";
+import orderRouter from "./routes/order.route.js";
 app.use("/api/v1", productRouter);
 app.use("/api/v1", userRouter);
+app.use("/api/v1", orderRouter);
 
 app.use(catchError);
 export default app;
