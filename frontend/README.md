@@ -11,3 +11,12 @@ Currently, two official plugins are available:
 <!-- 100e34  dark navy blue -->
 <!-- e1dfe5 dark white -->
 <!-- 02050a -->
+
+<!-- "server": {
+    "proxy": {
+      "/api/v1": {
+        "target": "http://localhost:4040",
+        "changeOrigin": true
+      }
+    }
+  }, -->
