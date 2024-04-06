@@ -44,9 +44,22 @@ const userSchema = new mongoose.Schema(
 );
 
 // hash password
+// userSchema.pre("save", async function (next) {
+//   if (!this.isModified("password")) next();
+//   this.password = await bcrypt.hash(this.password, 10);
+// });
+
+// modified and decrease security rsik
+
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) next();
-  this.password = await bcrypt.hash(this.password, 10);
+  try {
+    const salt = await bcrypt.genSalt(10);
+    console.log(salt);
+    this.password = await bcrypt.hash(this.password, salt);
+  } catch (error) {
+    next(error);
+  }
 });
 
 // json web token
