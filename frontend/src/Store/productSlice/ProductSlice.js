@@ -1,26 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
 const STATUSES = Object.freeze({
   PROCESSING: "processing",
   IDLE: "idle",
   ERROR: "error",
 });
-
 const initialState = {
   data: [],
-  statusIs: STATUSES.PROCESSING,
+  setStatus: STATUSES.PROCESSING,
 };
-
 const productSlice = createSlice({
-  name: "product",
+  name: "products",
   initialState,
   reducers: {
     getAllProducts(state, action) {
       state.data = action.payload;
     },
     setStatus(state, action) {
-      state.statusIs = action.payload;
+      state.setStatus = action.payload;
     },
   },
 });
@@ -28,22 +25,21 @@ const productSlice = createSlice({
 export default productSlice.reducer;
 export const { getAllProducts, setStatus } = productSlice.actions;
 
-// thunk
-function productThunk() {
-  return async function productrequestThunk(dispatch) {
-    dispatch(setStatus(STATUSES.PROCESSING));
+// use thunk
+// _____________________________
 
+const productThunk = () => {
+  return async function (dispatch) {
     try {
+      dispatch(setStatus(STATUSES.PROCESSING));
       const { data } = await axios.get("/api/v1/products");
-      dispatch(getAllProducts(data)); // Corrected 'res' to 'data'
+      dispatch(getAllProducts(data));
       dispatch(setStatus(STATUSES.IDLE));
     } catch (error) {
-      console.log(error.message);
-      // dispatch(getAllProducts(null));
       dispatch(setStatus(STATUSES.ERROR));
+      console.log(error);
     }
   };
-}
+};
 
 export { productThunk };
-export { STATUSES };

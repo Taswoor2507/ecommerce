@@ -1,33 +1,20 @@
-import { useEffect } from "react";
-import WebFont from "webfontloader";
-import Home from "./components/Home/Home.jsx";
-import Header from "./components/layout/Header/Header.jsx";
+import { useState } from "react";
+import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import Store from "./components/Store/Store.js";
-import MetaData from "./components/layout/MetaData.jsx";
+import Home from "./pages/Home/Home.jsx";
+import Header from "./components/header/Header.jsx";
+import Products from "./pages/Products/Products.jsx";
 function App() {
-  useEffect(() => {
-    WebFont.load({
-      google: {
-        families: ["Poppins"],
-      },
-    });
-  }, []);
+  const [count, setCount] = useState(0);
+
   return (
-    <Provider store={Store}>
-      <MetaData title="Ecommerce" />
+    <Router>
       <Header />
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/about"
-            element={<h1 className="bg-red-400 text-4xl">About us</h1>}
-          />
-        </Routes>
-      </Router>
-    </Provider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+      </Routes>
+    </Router>
   );
 }
 
