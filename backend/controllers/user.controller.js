@@ -39,7 +39,11 @@ const loginUser = asyncHandler(async (req, res, next) => {
 });
 
 const logoutUser = asyncHandler(async (req, res, next) => {
-  res.cookie("token", null, { expires: new Date(Date.now()), httpOnly: true });
+  res.cookie("token", null, {
+    expires: new Date(Date.now()),
+    httpOnly: true,
+    secure: true,
+  });
 
   res.status(200).json({
     success: true,
