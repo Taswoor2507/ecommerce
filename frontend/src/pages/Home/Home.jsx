@@ -3,6 +3,7 @@ import Products from "./Products.jsx";
 const Home = () => {
   return (
     <div>
+      <Products imageLink="https://img.freepik.com/free-photo/young-woman-beautiful-yellow-dress_1303-17544.jpg?w=740" />
       <div className="px-8 max-w-[1240px] mx-auto ">
         <div className="py-16 relative">
           <div className="">
@@ -20,9 +21,7 @@ const Home = () => {
             Get Started
           </button>
         </div>
-        <div className="pb-16 flex gap-6 flex-wrap">
-          <Products imageLink="https://img.freepik.com/free-photo/young-woman-beautiful-yellow-dress_1303-17544.jpg?w=740" />
-        </div>
+        <div className="pb-16 flex gap-6 flex-wrap"></div>
       </div>
     </div>
   );

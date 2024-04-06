@@ -43,3 +43,4 @@ const productThunk = () => {
 };
 
 export { productThunk };
+export { STATUSES };

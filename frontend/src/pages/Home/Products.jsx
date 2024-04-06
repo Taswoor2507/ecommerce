@@ -27,7 +27,7 @@ const Products = ({ imageLink }) => {
       {products.map((product) => {
         return (
           <Link
-            to={product._id}
+            to={`/product/${product._id}`}
             key={product._id}
             className="w-[250px] bg-slate-100 rounded-md overflow-hidden cursor-pointer hover:shadow-md"
           >
