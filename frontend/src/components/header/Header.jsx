@@ -10,6 +10,7 @@ const Header = () => {
           <Link to="/">Home</Link>
           <Link to="/products">Products</Link>
           <Link to="">All</Link>
+          <Link to="/search">Search</Link>
         </div>
         <div>
           <IoCart />

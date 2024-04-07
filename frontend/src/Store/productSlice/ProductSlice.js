@@ -28,11 +28,12 @@ export const { getAllProducts, setStatus } = productSlice.actions;
 // use thunk
 // _____________________________
 
-const productThunk = () => {
+const productThunk = (keyword = "", currentPage = 1) => {
   return async function (dispatch) {
     try {
+      let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}`;
       dispatch(setStatus(STATUSES.PROCESSING));
-      const { data } = await axios.get("/api/v1/products");
+      const { data } = await axios.get(link);
       dispatch(getAllProducts(data));
       dispatch(setStatus(STATUSES.IDLE));
     } catch (error) {

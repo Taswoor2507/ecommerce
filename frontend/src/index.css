@@ -9,3 +9,56 @@ body {
   font-style: normal;
   font-variation-settings: "slnt" 0;
 }
+
+/* Hide the increase and decrease controllers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Optional: If you want to remove the margin */
+}
+
+/* Optional: Style the input to make it visually clear */
+input[type="number"] {
+  appearance: none;
+}
+
+.paginationBox {
+  display: flex;
+  justify-content: center;
+  margin: 6vmax;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 0%;
+}
+
+.page-item {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.178);
+  transition: all 0.3s;
+  cursor: pointer;
+  padding: 1vmax 1.5vmax;
+}
+
+.page-item:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.page-item:last-child {
+  border-radius: 0 5px 5px 0;
+}
+.page-item:hover {
+  background-color: rgb(230, 230, 230);
+}
+.page-item:hover .page-link {
+  color: rgb(80, 80, 80);
+}
+
+.pageItemActive {
+  background-color: tomato;
+}
+.pageLinkActive {
+  color: white;
+}

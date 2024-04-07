@@ -33,7 +33,7 @@ const Products = ({ imageLink }) => {
           >
             <img
               src={imageLink}
-              className="w-[100%] aspect-square object-cover object-right hover:scale-[1.02] transition-all"
+              className="w-[100%]  aspect-square object-cover object-right hover:scale-[1.02] transition-all"
             />
             <div className="pt-2 px-2">
               <h1 className="text-[14px] font-bold">{product.name}</h1>

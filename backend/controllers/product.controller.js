@@ -28,8 +28,8 @@ const createNewProduct = asyncHandler(async (req, res, next) => {
 //@controller --> get all products
 // @access ---> all
 const getAllProducts = asyncHandler(async (req, res, next) => {
-  console.log("helloooooooooooooooooooooooo");
   const resultPerPage = 8;
+  const productsCount = await Product.countDocuments();
   const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search()
     .filter()
@@ -42,6 +42,8 @@ const getAllProducts = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     products,
+    resultPerPage,
+    productsCount,
   });
 });
 
